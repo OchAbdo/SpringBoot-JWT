@@ -15,8 +15,10 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,6 +26,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name="user")
 public class User implements UserDetails {
@@ -37,6 +40,10 @@ public class User implements UserDetails {
     private String password ;
     @Enumerated(EnumType.STRING)
     private Role role ;
+
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens ;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
