@@ -1,11 +1,13 @@
 package com.ochabdo.security.web.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@Builder
 @NoArgsConstructor
 public class RegisterRequest {
     
@@ -13,4 +15,5 @@ public class RegisterRequest {
     private String lastname ;
     private String email ;
     private String password ;
+    private Role role ;
 }

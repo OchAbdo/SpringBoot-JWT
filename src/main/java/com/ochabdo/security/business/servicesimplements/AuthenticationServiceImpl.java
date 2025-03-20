@@ -13,7 +13,6 @@ import com.ochabdo.security.dao.Repositories.TokenRepository;
 import com.ochabdo.security.dao.Repositories.UserRepository;
 import com.ochabdo.security.dao.entities.Token;
 import com.ochabdo.security.dao.entities.User;
-import com.ochabdo.security.security.configuration.ApplicationConfig;
 import com.ochabdo.security.web.dto.AuthenticationRequest;
 import com.ochabdo.security.web.dto.AuthenticationResponse;
 import com.ochabdo.security.web.dto.RegisterRequest;
@@ -52,7 +51,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                         .lastname(registerRequest.getLastname())
                         .email(registerRequest.getEmail())
                         .password(this.passwordEncoder.encode(registerRequest.getPassword()))
-                        .role(Role.STUDIANT)
+                        .role(registerRequest.getRole())
                         .build() ;
         User u = this.userRepository.save(user);
         var jwt = this.jwtService.generateToken(u);
